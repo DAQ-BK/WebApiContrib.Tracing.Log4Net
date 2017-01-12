@@ -50,14 +50,14 @@ namespace WebApiContrib.Tracing.Log4Net
 
             if (!string.IsNullOrWhiteSpace(record.Message))
                 message.Append(" ").Append(record.Message);
-                  
+
             if (record.Exception != null && !string.IsNullOrEmpty(record.Exception.GetBaseException().Message))
                 message.Append(" ").AppendLine(record.Exception.GetBaseException().Message);
 
             Logger[record.Level](message.ToString());
         }
 
-        private static readonly ILog s_log = LogManager.GetLogger(typeof (Log4NetTraceWriter));
+        private static readonly ILog s_log = LogManager.GetLogger(typeof(Log4NetTraceWriter));
 
         private static readonly Lazy<Dictionary<TraceLevel, Action<string>>> s_loggingMap =
             new Lazy<Dictionary<TraceLevel, Action<string>>>(() => new Dictionary<TraceLevel, Action<string>>
